@@ -24,9 +24,9 @@ void client::write(std::string&& str)
 void client::read()
 {
     char data[1024];
+    memset(data,0,sizeof(data));
     socket_.read_some(ba::buffer(data));
     std::cout << data << std::endl;
-    memset(data,0,sizeof(data));
 }
 
     

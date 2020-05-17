@@ -17,12 +17,14 @@ class session: public std::enable_shared_from_this<session>
 
   private:
     void do_read();
-    void do_write(std::size_t length);
+    void do_write(std::string);
 
     tcp::socket socket_;
     enum { max_length = 1024 };
-    char data_[max_length];
-    std::string data_str;
+    char data_[1024];
+    int offset = 0;
+
+    // std::string data_str;
     std::shared_ptr<HandlerDB> handler_db;
     static size_t count;
 };

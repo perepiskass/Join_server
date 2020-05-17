@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     std::string str;
     while(true)
     {
-      std::cin >> str;
+      std::getline(std::cin,str);
       clientPtr->write(std::move(str));
     }
   }

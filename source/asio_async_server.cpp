@@ -17,14 +17,16 @@ void session::start()
 void session::do_read()
 {
   auto self(shared_from_this());
-  socket_.async_read_some(boost::asio::buffer(data_, max_length),
+  socket_.async_read_some(boost::asio::buffer(data_,max_length),
       [this, self](boost::system::error_code ec, std::size_t)
       {
         if ( ec!=boost::asio::error::eof )
         {
-          data_str =  handler_db->setCommand(data_).c_str();
+          std::cout << "data_ " << data_ << std::endl;
+          auto data_str =  handler_db->setCommand(std::string(data_));
           memset(data_,0,sizeof(data_));
-          do_write(data_str.length());
+          std::cout << data_str.length() << std::endl;
+          do_write(data_str);
         }
         else 
         {
@@ -32,15 +34,17 @@ void session::do_read()
           if(!count) std::cout << "all socket close" << std::endl;
         }
       });
+
 }
-void session::do_write(std::size_t length)
+void session::do_write(std::string data_str)
 {
   auto self(shared_from_this());
-  boost::asio::async_write(socket_, boost::asio::buffer(data_str, length),
+  boost::asio::async_write(socket_, boost::asio::buffer(data_str, data_str.length()),
       [this, self](boost::system::error_code ec, std::size_t /*length*/)
       {
         if (!ec)
         {
+          // std::cout << data_str << std::endl;
           do_read();
         }
       });
