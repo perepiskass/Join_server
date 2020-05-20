@@ -19,28 +19,31 @@ namespace fs = boost::filesystem;
 
     std::vector<Table> Handler_c::readAll()
     {
-        std::cout << "read All start" << std::endl;
-        char ss[16]{"BEFORE readAll\0"};
-        db_stream.seekp(0,db_stream.end);
-        db_stream.write((char*)&ss,16);
-        std::cout << "readAll end\n";
+        // std::cout << "read All start" << std::endl;
+        // char ss[16]{"BEFORE readAll\0"};
+        // db_stream.seekp(0,db_stream.end);
+        // db_stream.write((char*)&ss,16);
+        // std::cout << "readAll end\n";
 
+        // db_stream.seekg(0,db_stream.beg);
+        // char st[40];
+        // db_stream.read((char*)&st,40);
+        // std::cout << st << std::endl;
+        // db_stream.clear();
+
+        db_stream.seekg(0,db_stream.beg);
         std::vector<Table> result;
-        db_stream.seekg(7,db_stream.beg);
-        char st[40];
-        db_stream.read((char*)&st,40);
-        std::cout << st << std::endl;
+        Table tab;
+        while( db_stream.read((char*)&tab,sizeof(Table)))
+        {
+            result.emplace_back(tab);
+        }
+        // printAll(result);
+        // char s[14]{"FROM readAll\0"};
+        // db_stream.seekp(0,db_stream.end);
+        // db_stream.write((char*)&s,14);
+        // std::cout << "readAll end\n";
         db_stream.clear();
-            // Table tab;
-            // while( db_stream.read((char*)&tab,sizeof(Table)))
-            // {
-            //     result.emplace_back(tab);
-            // }
-            // printAll(result);
-        char s[14]{"FROM readAll\0"};
-        db_stream.seekp(0,db_stream.end);
-        db_stream.write((char*)&s,14);
-        std::cout << "readAll end\n";
         return result;
     }
 
@@ -74,7 +77,7 @@ namespace fs = boost::filesystem;
         });
         if (it == all_data.end())
         {
-            std::cout << "open next" << std::endl;
+            std::cout << "open for write table" << std::endl;
             db_stream.seekp(0,std::ios::end);
             if(db_stream.is_open())
             {
@@ -87,6 +90,7 @@ namespace fs = boost::filesystem;
             {
                 std::cout << "Error open file\n";
             }
+            db_stream.clear();
             return "OK";
         }
         else return "This element exist!";
@@ -98,23 +102,32 @@ namespace fs = boost::filesystem;
     {
         auto all_data = readAll();
 
-        db_stream.seekg (0,std::ios::end);
-        auto length_all = db_stream.tellg();
-        db_stream.seekg(std::ios::beg);
-        size_t length = length_all - db_stream.tellg();
-
-        db_stream.seekp(std::ios::beg);
+        // db_stream.seekg (0,std::ios::end);
+        // auto length_all = db_stream.tellg();
+        // db_stream.seekg (0,std::ios::beg);
+        // auto length = length_all - db_stream.tellg();
+        // db_stream.clear();
+        // std::cout << "all data readed\n";
+        // db_stream.seekp(std::ios::beg);
         // const char zero = '\0';
-        db_stream.write(NULL,length);
+        // db_stream.write((char*)&zero,length);
+        // db_stream.clear();
+        
+
+        std::cout << "all data cleared\n";
 
         db_stream.seekp(std::ios::beg);
         for(auto& tab : all_data)
         {
             if(tab.table_name != this->table_name)
             {
+                std::cout << "Before write\n";
                 db_stream.write((char*)&tab,sizeof(Table));
+                std::cout << "After write\n";
+
             }
-        }     
+        }
+        db_stream.clear();     
         return "OK";
     }
 
@@ -141,7 +154,7 @@ namespace fs = boost::filesystem;
         std::string response;
         for(auto& res : result)
         {
-            response+= res.first +", " + res.second.first+", " + res.second.second + '\n';
+            response+= std::to_string(res.first)+", " + res.second.first+", " + res.second.second + '\n';
         }
         response+="OK";
         return response;
@@ -156,21 +169,21 @@ namespace fs = boost::filesystem;
 
         std::for_each(all_data.begin(), all_data.end(), [&all_data,&result](const Table& tab){ 
 
-                auto it = std::find_if(std::begin(all_data),std::end(all_data),[&tab](const Table& tab_){
-                    if(tab_.id == tab.id && tab_.table_name!=tab.table_name) return true;
-                    else return false;
-                });
-            if(it== all_data.end())
-            {
-                if(tab.table_name == 'A') result[tab.id] = std::make_pair(tab.name,"");
-                else result[tab.id] = std::make_pair("",tab.name);
-            }
+            auto it = std::find_if(std::begin(all_data),std::end(all_data),[&tab](const Table& tab_){
+                if(tab_.id == tab.id && tab_.table_name!=tab.table_name) return true;
+                else return false;
+            });
+        if(it== all_data.end())
+        {
+            if(tab.table_name == 'A') result[tab.id] = std::make_pair(tab.name,"");
+            else result[tab.id] = std::make_pair("",tab.name);
+        }
         
         });
         std::string response;
         for(auto& res : result)
         {
-            response+= res.first +", " + res.second.first+", " + res.second.second + '\n';
+            response+=std::to_string(res.first) +", " + res.second.first+", " + res.second.second + '\n';
         }
         response+="OK";
         return response;
