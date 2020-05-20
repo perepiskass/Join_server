@@ -2,83 +2,178 @@
 #include <fstream>
 #include <iostream>
 #include <boost/filesystem.hpp>
+#include <utility>
+#include <queue>
 
 namespace fs = boost::filesystem;
 
-    Handler_c::Handler_c(){}
-
-    std::fstream Handler_c::openDB(std::string name_db, std::ios::ios_base::openmode mode)
+    void printAll(std::vector<Table>& t)
     {
-       std::fstream db_str (name_db, mode);
-        if(db_str.is_open())
+        for (auto& i : t)
         {
-            return db_str;
-        }
-        else
-        {
-            std::cout << "Error open db name: " << name_db << std::endl;
+            std::cout<< i.table_name << ' ' << i.id << ' ' << i.name << std::endl;
         }
     }
-
-
-
-    Insert::Insert(std::tuple<std::string,char, size_t, std::string> args_): args(args_)
+    Handler_c::Handler_c(std::fstream& db_stream): db_stream(db_stream)
     {}
-    std::string Insert::handle_command()
+
+    std::vector<Table> Handler_c::readAll()
     {
-        Table tab;
-        std::tie(std::ignore, tab.table_name,tab.id,tab.name) = args;
-        auto db_str = openDB(std::get<0>(args), std::ios::ios_base::app | std::ios::ios_base::binary);
-        db_str.write((char*)&tab,sizeof(Table));
-        db_str.close();
-        return "OK";
+        std::cout << "read All start" << std::endl;
+        char ss[16]{"BEFORE readAll\0"};
+        db_stream.seekp(0,db_stream.end);
+        db_stream.write((char*)&ss,16);
+        std::cout << "readAll end\n";
+
+        std::vector<Table> result;
+        db_stream.seekg(7,db_stream.beg);
+        char st[40];
+        db_stream.read((char*)&st,40);
+        std::cout << st << std::endl;
+        db_stream.clear();
+            // Table tab;
+            // while( db_stream.read((char*)&tab,sizeof(Table)))
+            // {
+            //     result.emplace_back(tab);
+            // }
+            // printAll(result);
+        char s[14]{"FROM readAll\0"};
+        db_stream.seekp(0,db_stream.end);
+        db_stream.write((char*)&s,14);
+        std::cout << "readAll end\n";
+        return result;
     }
 
-    Trancate::Trancate(std::tuple<std::string,char> args_): args(args_)
+    Insert::Insert(std::fstream& db_s,char name_table,size_t ID,char* name):Handler_c(db_s)
+    {
+        insert_tab.table_name = name_table;
+        insert_tab.id = ID;
+        strcpy(insert_tab.name,name);
+    }
+    std::string Insert::handle_command()
+    {   
+        auto all_data = readAll();
+        // db_stream << "after all_data_readALL";
+
+        // printAll(all_data);
+        auto name_tab = insert_tab.table_name;
+        auto ID = insert_tab.id;
+        
+        auto it = std::find_if(std::begin(all_data),std::end(all_data),[&ID,&name_tab](Table& tab){
+            std::cout << "tab.id " << tab.id << " ID " << ID << std::endl;
+            if(tab.id == ID && tab.table_name==name_tab)
+            {
+                std::cout << "return true \n";
+                return true;
+            } 
+            else 
+            {
+                std::cout << "return false \n";
+                return false;
+            }
+        });
+        if (it == all_data.end())
+        {
+            std::cout << "open next" << std::endl;
+            db_stream.seekp(0,std::ios::end);
+            if(db_stream.is_open())
+            {
+                std::cout <<sizeof(Table) << ' ' << insert_tab.table_name << ' ' << insert_tab.id << ' ' << insert_tab.name << std::endl;
+                db_stream.write((char*)&insert_tab,sizeof(Table));
+                // db_stream << "FUck";
+                std::cout << "db writed!!!\n";
+            }
+            else
+            {
+                std::cout << "Error open file\n";
+            }
+            return "OK";
+        }
+        else return "This element exist!";
+    }
+
+    Trancate::Trancate(std::fstream& db_s,char name_table): Handler_c(db_s), table_name(name_table)
     {}
     std::string Trancate::handle_command()
     {
-        Table tab;
-        char name_table;
-        std::string name_db;
-        std::tie(name_db,name_table) = args;
+        auto all_data = readAll();
 
-        auto db_str = openDB(name_db, std::ios::ios_base::in | std::ios::ios_base::binary);
-        auto db_str_copy = openDB(name_db+".copy", std::ios_base::app | std::ios_base::trunc | std::ios::ios_base::binary);
+        db_stream.seekg (0,std::ios::end);
+        auto length_all = db_stream.tellg();
+        db_stream.seekg(std::ios::beg);
+        size_t length = length_all - db_stream.tellg();
 
-        while( db_str.read((char*)&tab,sizeof(Table)))
+        db_stream.seekp(std::ios::beg);
+        // const char zero = '\0';
+        db_stream.write(NULL,length);
+
+        db_stream.seekp(std::ios::beg);
+        for(auto& tab : all_data)
         {
-            if(tab.table_name == name_table) continue;
-            else
+            if(tab.table_name != this->table_name)
             {
-                db_str_copy.write((char*)&tab,sizeof(Table));
+                db_stream.write((char*)&tab,sizeof(Table));
             }
-        }
-        db_str.close();
-        db_str_copy.close();
-
-        if (fs::remove(fs::path(name_db))) fs::rename(fs::path(name_db+"copy"),fs::path(name_db));
+        }     
         return "OK";
     }
 
-
-    Intersection::Intersection(std::tuple<std::string> args_): args(args_)
+    Intersection::Intersection(std::fstream& db_s): Handler_c(db_s)
     {}
     std::string Intersection::handle_command()
     {
-        Table tab;
-        char name_table;
-        std::string name_db;
-        std::tie(name_db) = args; // добавить название таблиц
+        auto all_data = readAll();
+        std::map<size_t,std::pair<std::string,std::string>> result;
 
-        auto db_str = openDB(name_db, std::ios::ios_base::in | std::ios::ios_base::binary);
+        std::for_each(all_data.begin(), all_data.end(), [&all_data,&result](const Table& tab){ 
+        if(tab.table_name == 'A')
+        {
+                auto it = std::find_if(std::begin(all_data),std::end(all_data),[&tab](const Table& tab_){
+                    if(tab_.id == tab.id && tab_.table_name=='B') return true;
+                    else return false;
+                });
+            if(it!= all_data.end())
+            {
+                 result[tab.id] = std::make_pair(tab.name,it->name);
+            }
+        }
+        });
+        std::string response;
+        for(auto& res : result)
+        {
+            response+= res.first +", " + res.second.first+", " + res.second.second + '\n';
+        }
+        response+="OK";
+        return response;
     }
 
-    Symmetric_difference::Symmetric_difference(std::tuple<std::string> args_): args(args_)
+    Symmetric_difference::Symmetric_difference(std::fstream& db_s): Handler_c(db_s)
     {}
-    std::string handle_command()
+    std::string Symmetric_difference::handle_command()
     {
+        auto all_data = readAll();
+        std::map<size_t,std::pair<std::string,std::string>> result;
+
+        std::for_each(all_data.begin(), all_data.end(), [&all_data,&result](const Table& tab){ 
+
+                auto it = std::find_if(std::begin(all_data),std::end(all_data),[&tab](const Table& tab_){
+                    if(tab_.id == tab.id && tab_.table_name!=tab.table_name) return true;
+                    else return false;
+                });
+            if(it== all_data.end())
+            {
+                if(tab.table_name == 'A') result[tab.id] = std::make_pair(tab.name,"");
+                else result[tab.id] = std::make_pair("",tab.name);
+            }
         
+        });
+        std::string response;
+        for(auto& res : result)
+        {
+            response+= res.first +", " + res.second.first+", " + res.second.second + '\n';
+        }
+        response+="OK";
+        return response;
     }
 
 

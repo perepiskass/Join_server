@@ -22,10 +22,10 @@ void session::do_read()
       {
         if ( ec!=boost::asio::error::eof )
         {
-          std::cout << "data_ " << data_ << std::endl;
+          // std::cout << "data_ " << data_ << std::endl;
           auto data_str =  handler_db->setCommand(std::string(data_));
           memset(data_,0,sizeof(data_));
-          std::cout << data_str.length() << std::endl;
+          // std::cout << data_str.length() << std::endl;
           do_write(data_str);
         }
         else 

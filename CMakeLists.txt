@@ -14,7 +14,7 @@ endif()
 
 # ДОБАВЛЯЕМ В ПРОЕКТ ДОПОЛНИТЕЛЬНЫЕ БИБЛИОТЕКИ ДЛЯ ТЕСТИРОВАНИЯ-------------
 # Опция "REQUIRED" говорит о том, что библиотека необходима проекту. Без нее cmake решит, что отсутствие данной библиотеки - не так уж и страшно, и будет собирать дальше.
-find_package(Boost COMPONENTS system REQUIRED)
+find_package(Boost COMPONENTS system filesystem REQUIRED)
 find_package(GTest REQUIRED)
 find_package(Threads)
 # Добавим директории с хедерами Boost, gtest и директорию с исходниками для поиска в них хедеров
@@ -30,7 +30,7 @@ configure_file(${CMAKE_SOURCE_DIR}/include/version.h.in ${CMAKE_SOURCE_DIR}/incl
 # СОЗДАЕМ ИСПОЛНЯЕМЫЕ ФАЙЛЫ И ДОБОВЛЯЕМ БИБЛИОТЕКИ В ПРОЕКТ-----------------
 # Создаем исполняемый фаил print_ip из main.cpp
 add_executable(join_server ${CMAKE_SOURCE_DIR}/source/server.cpp ${CMAKE_SOURCE_DIR}/source/arg.cpp 
-${CMAKE_SOURCE_DIR}/source/asio_async_server.cpp)
+${CMAKE_SOURCE_DIR}/source/asio_async_server.cpp ${CMAKE_SOURCE_DIR}/source/db_handler.cpp ${CMAKE_SOURCE_DIR}/source/command_handler.cpp)
 add_executable(join_client ${CMAKE_SOURCE_DIR}/source/client.cpp ${CMAKE_SOURCE_DIR}/source/arg_client.cpp
 ${CMAKE_SOURCE_DIR}/source/asio_client.cpp)
 # Создаем библиотеку с именем versionlib из источника - файла с именем version_lib.cpp

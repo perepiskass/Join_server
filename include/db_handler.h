@@ -2,18 +2,19 @@
 #include <string>
 #include <thread>
 #include "command_handler.h"
+#include <fstream>
 
 class HandlerDB
 {
     public:
         HandlerDB(std::string name);
         std::string setCommand(std::string command);
+        ~HandlerDB();
 
     private:
         void checkCommand(std::string);
         
-        // Handler_c* hanlde_c;
+        std::fstream db_stream;
         std::string response;
-        std::string name_db;
     
 };
