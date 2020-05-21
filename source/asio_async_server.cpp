@@ -22,16 +22,17 @@ void session::do_read()
       {
         if ( ec!=boost::asio::error::eof )
         {
-          // std::cout << "data_ " << data_ << std::endl;
           auto data_str =  handler_db->setCommand(std::string(data_));
           memset(data_,0,sizeof(data_));
-          // std::cout << data_str.length() << std::endl;
           do_write(data_str);
         }
         else 
         {
           --count;
-          if(!count) std::cout << "all socket close" << std::endl;
+          if(!count)
+          {
+            std::cout << "all socket close" << std::endl;
+          } 
         }
       });
 
@@ -44,7 +45,6 @@ void session::do_write(std::string data_str)
       {
         if (!ec)
         {
-          // std::cout << data_str << std::endl;
           do_read();
         }
       });
@@ -72,7 +72,6 @@ void server::do_accept(std::shared_ptr<HandlerDB> handler_db)
         {
           std::make_shared<session>(std::move(socket_),handler_db)->start();
         }
-
         do_accept(handler_db);
       });
 }

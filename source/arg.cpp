@@ -27,16 +27,15 @@ auto checkArg(int argc,char** argv)
             } 
             else  
             {
-
-                std::cout << "Enter correct port or bulk size"<< std::endl;
-                exit(0);
+                std::cout << "Enter correct port or data base name"<< std::endl;
+                exit(1);
             }
         }
     }
     else 
     {
-      std::cout << "Usage: async_tcp_echo_server <port> <bulk size> or -version" << std::endl;
-      exit(0);
+      std::cout << "Usage: async_tcp_echo_server <port> <db name> or -version" << std::endl;
+      exit(1);
     }
     
 }

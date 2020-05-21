@@ -1,8 +1,6 @@
 #pragma once
-#include <string>
-#include <thread>
 #include "command_handler.h"
-#include <fstream>
+#include <memory>
 
 class HandlerDB
 {
@@ -13,8 +11,7 @@ class HandlerDB
 
     private:
         void checkCommand(std::string);
-        
+        std::string db_name;
         std::fstream db_stream;
         std::string response;
-    
 };

@@ -1,11 +1,7 @@
 #pragma once
 #include <cstdlib>
-#include <iostream>
-#include <memory>
-#include <utility>
 #include <boost/asio.hpp>
 #include "db_handler.h"
-#include <string>
 
 using boost::asio::ip::tcp;
 
@@ -22,9 +18,7 @@ class session: public std::enable_shared_from_this<session>
     tcp::socket socket_;
     enum { max_length = 1024 };
     char data_[1024];
-    int offset = 0;
 
-    // std::string data_str;
     std::shared_ptr<HandlerDB> handler_db;
     static size_t count;
 };

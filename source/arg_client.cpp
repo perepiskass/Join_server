@@ -31,14 +31,14 @@ auto checkArg(int argc,char** argv)
             {
 
                 std::cout << "Enter correct address or port"<< std::endl;
-                exit(0);
+                exit(1);
             }
         }
     }
     else 
     {
-      std::cout << "Usage: bulk_client <ip_address> <port> or -version" << std::endl;
-      exit(0);
+      std::cout << "Usage: join_server <ip_address> <port> or -version" << std::endl;
+      exit(1);
     }
     
 }
