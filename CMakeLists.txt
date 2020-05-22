@@ -85,18 +85,21 @@ target_link_libraries(join_server PRIVATE
     Threads::Threads
 )
 target_link_libraries(dbase PRIVATE
+${Boost_LIBRARIES}
  Threads::Threads
 )
 
 
 target_link_libraries(gtest
     ${GTEST_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
     versionlib
+    dbase
     )
-target_link_libraries(gtest
-${CMAKE_THREAD_LIBS_INIT}
-versionlib
-)
+#target_link_libraries(gtest
+#${CMAKE_THREAD_LIBS_INIT}
+#versionlib
+#)
 
 # СВОЙСТВА ДЛЯ КОМПИЛЯТОРОВ (ЛЮБЫЕ ПРЕДУПРЕЖДЕНИЯ ТРАКТОВАТЬ КАК ОШИБКИ)
 if (MSVC)

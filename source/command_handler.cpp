@@ -51,13 +51,17 @@
             if(db_stream.is_open())
             {
                 db_stream.write((char*)&insert_tab,sizeof(Table));
+                db_stream.clear();
+                return "OK";
             }
             else
             {
                 std::cout << "Error open file\n";
+                // exit(1);
             }
-            db_stream.clear();
-            return "OK";
+            // db_stream.clear();
+            // return "OK";
+            exit(1);
         }
         else return "ERR duplicate " + std::to_string(ID);
     }
