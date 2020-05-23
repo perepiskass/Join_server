@@ -21,11 +21,11 @@ script:
 - doxygen Doxyfile
 deploy:
 - provider: script
-  cleanup: true
+  skip_cleanup: true
   script:
     - curl -T join_server-1.1.$TRAVIS_BUILD_NUMBER-Linux.deb -uperepiskass:$BINTRAY_API_KEY "https://api.bintray.com/content/perepiskass/My_DB/join_server/$TRAVIS_BUILD_NUMBER/join_server-1.1.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 - provider: pages
-  cleanup: true
+  skip_cleanup: true
   token: $GITHUB_TOKEN
   keep_history: true
   local_dir: html
