@@ -1,4 +1,5 @@
 language: cpp
+os: linux
 dist: bionic
 before_script:
 - echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic universe" | sudo tee -a /etc/apt/sources.list
@@ -20,13 +21,12 @@ script:
 - doxygen Doxyfile
 deploy:
 - provider: script
-  skip_cleanup: true
+  cleanup: true
   script:
     - curl -T join_server-1.1.$TRAVIS_BUILD_NUMBER-Linux.deb -uperepiskass:$BINTRAY_API_KEY "https://api.bintray.com/content/perepiskass/My_DB/join_server/$TRAVIS_BUILD_NUMBER/join_server-1.1.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
 - provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  cleanup: true
+  token: $GITHUB_TOKEN
   keep_history: true
-  local-dir: html
-  on:
-  branch: master
+  local_dir: html
+  on: master
