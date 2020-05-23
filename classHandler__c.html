@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Join_server: Класс Handler_c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Join_server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="classHandler__c-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Handler_c<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Интерфейс для различных классов - команд в базу данных  
+ <a href="classHandler__c.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="command__handler_8h_source.html">command_handler.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:Handler_c:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHandler__c__inherit__graph.png" border="0" usemap="#Handler__c_inherit__map" alt="Inheritance graph"/></div>
+<map name="Handler__c_inherit__map" id="Handler__c_inherit__map">
+<area shape="rect" id="node2" href="classDefragmintation__db.html" title="Класс, реализующий команду дефрагминтации файла базы данных. " alt="" coords="5,189,193,296"/>
+<area shape="rect" id="node3" href="classInsert.html" title="Класс, реализующий команду вставки строки в одну из табиц базы данных. " alt="" coords="218,189,381,296"/>
+<area shape="rect" id="node4" href="classIntersection.html" title="Класс, реализующий команду выборки данных из двух таблиц, с одинаковыми полями ID. " alt="" coords="405,189,567,296"/>
+<area shape="rect" id="node5" href="classSymmetric__difference.html" title="Класс, реализующий команду выборки данных из двух таблиц, с не пересекающимися ID. " alt="" coords="592,189,793,296"/>
+<area shape="rect" id="node6" href="classTrancate.html" title="Класс, реализующий команду удаления данных одной из табиц. " alt="" coords="818,189,981,296"/>
+</map>
+</div>
+<div class="dynheader">
+Граф связей класса Handler_c:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHandler__c__coll__graph.png" border="0" usemap="#Handler__c_coll__map" alt="Collaboration graph"/></div>
+<map name="Handler__c_coll__map" id="Handler__c_coll__map">
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a0be6feedadf8b3a75cc2489372f5be25"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler__c.html#a0be6feedadf8b3a75cc2489372f5be25">Handler_c</a> (std::fstream &amp;<a class="el" href="classHandler__c.html#a72624b01342e36eb1e7b09b06a085f03">db_stream</a>)</td></tr>
+<tr class="separator:a0be6feedadf8b3a75cc2489372f5be25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d5734806bb4972dac41caccc7ca3d9b"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler__c.html#a1d5734806bb4972dac41caccc7ca3d9b">handle_command</a> () const =0</td></tr>
+<tr class="separator:a1d5734806bb4972dac41caccc7ca3d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7de0826cb6e96a07f4f5b9b899fd7752"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler__c.html#a7de0826cb6e96a07f4f5b9b899fd7752">~Handler_c</a> ()=default</td></tr>
+<tr class="separator:a7de0826cb6e96a07f4f5b9b899fd7752"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5288b0b52d9c59f6b7cfba4bcb2a6727"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structTable.html">Table</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler__c.html#a5288b0b52d9c59f6b7cfba4bcb2a6727">readAll</a> () const</td></tr>
+<tr class="separator:a5288b0b52d9c59f6b7cfba4bcb2a6727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a877636d81f69c30b6b596386b5e4a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler__c.html#a40a877636d81f69c30b6b596386b5e4a">makeResponse</a> (std::map&lt; u_int32_t, std::pair&lt; std::string, std::string &gt;&gt; &amp;result) const</td></tr>
+<tr class="separator:a40a877636d81f69c30b6b596386b5e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a72624b01342e36eb1e7b09b06a085f03"><td class="memItemLeft" align="right" valign="top">std::fstream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHandler__c.html#a72624b01342e36eb1e7b09b06a085f03">db_stream</a></td></tr>
+<tr class="separator:a72624b01342e36eb1e7b09b06a085f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Интерфейс для различных классов - команд в базу данных </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a0be6feedadf8b3a75cc2489372f5be25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0be6feedadf8b3a75cc2489372f5be25">&#9670;&nbsp;</a></span>Handler_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Handler_c::Handler_c </td>
+          <td>(</td>
+          <td class="paramtype">std::fstream &amp;&#160;</td>
+          <td class="paramname"><em>db_stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7de0826cb6e96a07f4f5b9b899fd7752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7de0826cb6e96a07f4f5b9b899fd7752">&#9670;&nbsp;</a></span>~Handler_c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Handler_c::~Handler_c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a1d5734806bb4972dac41caccc7ca3d9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d5734806bb4972dac41caccc7ca3d9b">&#9670;&nbsp;</a></span>handle_command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string Handler_c::handle_command </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Замещается в <a class="el" href="classDefragmintation__db.html#adc297c06f2f0ba165d964127aa149fd7">Defragmintation_db</a>, <a class="el" href="classSymmetric__difference.html#af79ecdede9b2393294b5a4b13e2bfc6f">Symmetric_difference</a>, <a class="el" href="classIntersection.html#ab6e833f4c108642ef1305e5163db92c6">Intersection</a>, <a class="el" href="classTrancate.html#abfd434273de1744e135ad473aa6d3cd1">Trancate</a> и <a class="el" href="classInsert.html#afd6fe55c86d51646845a1ea033ef16be">Insert</a>.</p>
+
+</div>
+</div>
+<a id="a40a877636d81f69c30b6b596386b5e4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a877636d81f69c30b6b596386b5e4a">&#9670;&nbsp;</a></span>makeResponse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Handler_c::makeResponse </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; u_int32_t, std::pair&lt; std::string, std::string &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHandler__c_a40a877636d81f69c30b6b596386b5e4a_icgraph.png" border="0" usemap="#classHandler__c_a40a877636d81f69c30b6b596386b5e4a_icgraph" alt=""/></div>
+<map name="classHandler__c_a40a877636d81f69c30b6b596386b5e4a_icgraph" id="classHandler__c_a40a877636d81f69c30b6b596386b5e4a_icgraph">
+<area shape="rect" id="node2" href="classIntersection.html#ab6e833f4c108642ef1305e5163db92c6" title="Intersection::handle\l_command" alt="" coords="255,5,406,47"/>
+<area shape="rect" id="node4" href="classSymmetric__difference.html#af79ecdede9b2393294b5a4b13e2bfc6f" title="Symmetric_difference\l::handle_command" alt="" coords="248,71,413,112"/>
+<area shape="rect" id="node3" href="gtest_8cpp.html#a27116cfb453763a65070b879090bc077" title="TEST" alt="" coords="461,13,516,39"/>
+<area shape="rect" id="node5" href="gtest_8cpp.html#ac7d8322cac27c32e0e8a22536ad8ab67" title="TEST" alt="" coords="461,78,516,105"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5288b0b52d9c59f6b7cfba4bcb2a6727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5288b0b52d9c59f6b7cfba4bcb2a6727">&#9670;&nbsp;</a></span>readAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structTable.html">Table</a> &gt; Handler_c::readAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="classHandler__c_a5288b0b52d9c59f6b7cfba4bcb2a6727_icgraph.png" border="0" usemap="#classHandler__c_a5288b0b52d9c59f6b7cfba4bcb2a6727_icgraph" alt=""/></div>
+<map name="classHandler__c_a5288b0b52d9c59f6b7cfba4bcb2a6727_icgraph" id="classHandler__c_a5288b0b52d9c59f6b7cfba4bcb2a6727_icgraph">
+<area shape="rect" id="node2" href="classInsert.html#afd6fe55c86d51646845a1ea033ef16be" title="Insert::handle_command" alt="" coords="195,5,377,32"/>
+<area shape="rect" id="node4" href="classIntersection.html#ab6e833f4c108642ef1305e5163db92c6" title="Intersection::handle\l_command" alt="" coords="211,57,361,98"/>
+<area shape="rect" id="node6" href="classSymmetric__difference.html#af79ecdede9b2393294b5a4b13e2bfc6f" title="Symmetric_difference\l::handle_command" alt="" coords="203,122,369,163"/>
+<area shape="rect" id="node3" href="gtest_8cpp.html#a5e68b09e3947aa8601beb1db02f554cc" title="TEST" alt="" coords="425,5,480,32"/>
+<area shape="rect" id="node5" href="gtest_8cpp.html#a27116cfb453763a65070b879090bc077" title="TEST" alt="" coords="425,64,480,91"/>
+<area shape="rect" id="node7" href="gtest_8cpp.html#ac7d8322cac27c32e0e8a22536ad8ab67" title="TEST" alt="" coords="425,129,480,156"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="a72624b01342e36eb1e7b09b06a085f03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72624b01342e36eb1e7b09b06a085f03">&#9670;&nbsp;</a></span>db_stream</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::fstream&amp; Handler_c::db_stream</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>include/<a class="el" href="command__handler_8h_source.html">command_handler.h</a></li>
+<li>source/<a class="el" href="command__handler_8cpp.html">command_handler.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Join_server: Файл source/client.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Join_server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle">
+<div class="title">Файл client.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="version__lib_8h_source.html">version_lib.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="asio__client_8h_source.html">asio_client.h</a>&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;csignal&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Граф включаемых заголовочных файлов для client.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="client_8cpp__incl.png" border="0" usemap="#source_2client_8cpp" alt=""/></div>
+<map name="source_2client_8cpp" id="source_2client_8cpp">
+<area shape="rect" id="node2" href="version__lib_8h.html" title="version_lib.h" alt="" coords="5,80,111,107"/>
+<area shape="rect" id="node3" href="asio__client_8h.html" title="asio_client.h" alt="" coords="186,80,290,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a8b548c171f575199abe5234e38bc42f7"><td class="memItemLeft" align="right" valign="top">std::pair&lt; ba::ip::address, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a8b548c171f575199abe5234e38bc42f7">checkArg</a> (int argc, char **argv)</td></tr>
+<tr class="memdesc:a8b548c171f575199abe5234e38bc42f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция для проверки введенных аргументов программы порта и размера bulk.  <a href="#a8b548c171f575199abe5234e38bc42f7">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8b548c171f575199abe5234e38bc42f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e80f0b6037370db8a6c91b2a14be35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a83e80f0b6037370db8a6c91b2a14be35">signalFunction</a> (int signal)</td></tr>
+<tr class="separator:a83e80f0b6037370db8a6c91b2a14be35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a4aaae31519c79f4fb0b5d2ab6e5ef97f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classclient.html">client</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8cpp.html#a4aaae31519c79f4fb0b5d2ab6e5ef97f">clientPtr</a></td></tr>
+<tr class="separator:a4aaae31519c79f4fb0b5d2ab6e5ef97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Функции</h2>
+<a id="a8b548c171f575199abe5234e38bc42f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b548c171f575199abe5234e38bc42f7">&#9670;&nbsp;</a></span>checkArg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt;ba::ip::address,size_t&gt; checkArg </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция для проверки введенных аргументов программы порта и размера bulk. </p>
+<p>Функция для проверки введенных аргументов программы порта и размера bulk. </p>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="client_8cpp_a8b548c171f575199abe5234e38bc42f7_icgraph.png" border="0" usemap="#client_8cpp_a8b548c171f575199abe5234e38bc42f7_icgraph" alt=""/></div>
+<map name="client_8cpp_a8b548c171f575199abe5234e38bc42f7_icgraph" id="client_8cpp_a8b548c171f575199abe5234e38bc42f7_icgraph">
+<area shape="rect" id="node2" href="client_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="136,5,191,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="client_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png" border="0" usemap="#client_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph" alt=""/></div>
+<map name="client_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph" id="client_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph">
+<area shape="rect" id="node2" href="client_8cpp.html#a8b548c171f575199abe5234e38bc42f7" title="Функция для проверки введенных аргументов программы порта и размера bulk. " alt="" coords="125,5,208,32"/>
+<area shape="rect" id="node3" href="classclient.html#abc0fb18a35d6c2fd84e5e3697d7e75a3" title="client::connect" alt="" coords="108,56,225,83"/>
+<area shape="rect" id="node4" href="client_8cpp.html#a83e80f0b6037370db8a6c91b2a14be35" title="signalFunction" alt="" coords="109,107,224,133"/>
+<area shape="rect" id="node6" href="classclient.html#a3e97f68af9e2d0a5b4ad35eb2d1c6c64" title="client::write" alt="" coords="117,157,216,184"/>
+<area shape="rect" id="node5" href="classclient.html#aa47d71abf6751df6643b4252b31fb0cd" title="client::disconnect" alt="" coords="273,107,409,133"/>
+<area shape="rect" id="node7" href="classclient.html#a595bed7579ed8b31a154cc7a570feadb" title="client::read" alt="" coords="294,157,389,184"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a83e80f0b6037370db8a6c91b2a14be35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83e80f0b6037370db8a6c91b2a14be35">&#9670;&nbsp;</a></span>signalFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void signalFunction </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>signal</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="client_8cpp_a83e80f0b6037370db8a6c91b2a14be35_cgraph.png" border="0" usemap="#client_8cpp_a83e80f0b6037370db8a6c91b2a14be35_cgraph" alt=""/></div>
+<map name="client_8cpp_a83e80f0b6037370db8a6c91b2a14be35_cgraph" id="client_8cpp_a83e80f0b6037370db8a6c91b2a14be35_cgraph">
+<area shape="rect" id="node2" href="classclient.html#aa47d71abf6751df6643b4252b31fb0cd" title="client::disconnect" alt="" coords="168,5,304,32"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="client_8cpp_a83e80f0b6037370db8a6c91b2a14be35_icgraph.png" border="0" usemap="#client_8cpp_a83e80f0b6037370db8a6c91b2a14be35_icgraph" alt=""/></div>
+<map name="client_8cpp_a83e80f0b6037370db8a6c91b2a14be35_icgraph" id="client_8cpp_a83e80f0b6037370db8a6c91b2a14be35_icgraph">
+<area shape="rect" id="node2" href="client_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="168,5,223,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a4aaae31519c79f4fb0b5d2ab6e5ef97f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aaae31519c79f4fb0b5d2ab6e5ef97f">&#9670;&nbsp;</a></span>clientPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classclient.html">client</a>* clientPtr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

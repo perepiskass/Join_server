@@ -1,0 +1,8 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$client_8cpp.html#a8b548c171f575199abe5234e38bc42f7" title="Функция для проверки введенных аргументов программы порта и размера bulk. " alt="" coords="125,5,208,32"/>
+<area shape="rect" id="node3" href="$classclient.html#abc0fb18a35d6c2fd84e5e3697d7e75a3" title="client::connect" alt="" coords="108,56,225,83"/>
+<area shape="rect" id="node4" href="$client_8cpp.html#a83e80f0b6037370db8a6c91b2a14be35" title="signalFunction" alt="" coords="109,107,224,133"/>
+<area shape="rect" id="node6" href="$classclient.html#a3e97f68af9e2d0a5b4ad35eb2d1c6c64" title="client::write" alt="" coords="117,157,216,184"/>
+<area shape="rect" id="node5" href="$classclient.html#aa47d71abf6751df6643b4252b31fb0cd" title="client::disconnect" alt="" coords="273,107,409,133"/>
+<area shape="rect" id="node7" href="$classclient.html#a595bed7579ed8b31a154cc7a570feadb" title="client::read" alt="" coords="294,157,389,184"/>
+</map>

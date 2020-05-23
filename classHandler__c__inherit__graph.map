@@ -1,0 +1,7 @@
+<map id="Handler_c" name="Handler_c">
+<area shape="rect" id="node2" href="$classDefragmintation__db.html" title="Класс, реализующий команду дефрагминтации файла базы данных. " alt="" coords="5,189,193,296"/>
+<area shape="rect" id="node3" href="$classInsert.html" title="Класс, реализующий команду вставки строки в одну из табиц базы данных. " alt="" coords="218,189,381,296"/>
+<area shape="rect" id="node4" href="$classIntersection.html" title="Класс, реализующий команду выборки данных из двух таблиц, с одинаковыми полями ID. " alt="" coords="405,189,567,296"/>
+<area shape="rect" id="node5" href="$classSymmetric__difference.html" title="Класс, реализующий команду выборки данных из двух таблиц, с не пересекающимися ID. " alt="" coords="592,189,793,296"/>
+<area shape="rect" id="node6" href="$classTrancate.html" title="Класс, реализующий команду удаления данных одной из табиц. " alt="" coords="818,189,981,296"/>
+</map>

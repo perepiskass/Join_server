@@ -1,0 +1,6 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node2" href="$classInsert.html#afd6fe55c86d51646845a1ea033ef16be" title="Insert::handle_command" alt="" coords="108,5,291,32"/>
+<area shape="rect" id="node4" href="$classIntersection.html#ab6e833f4c108642ef1305e5163db92c6" title="Intersection::handle\l_command" alt="" coords="124,57,275,98"/>
+<area shape="rect" id="node3" href="$classHandler__c.html#a5288b0b52d9c59f6b7cfba4bcb2a6727" title="Handler_c::readAll" alt="" coords="365,9,507,36"/>
+<area shape="rect" id="node5" href="$classHandler__c.html#a40a877636d81f69c30b6b596386b5e4a" title="Handler_c::makeResponse" alt="" coords="339,64,533,91"/>
+</map>

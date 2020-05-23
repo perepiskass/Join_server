@@ -1,0 +1,8 @@
+<map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
+<area shape="rect" id="node1" href="$classHandler__c.html" title="Интерфейс для различных классов &#45; команд в базу данных " alt="" coords="5,107,92,133"/>
+<area shape="rect" id="node2" href="$classDefragmintation__db.html" title="Класс, реализующий команду дефрагминтации файла базы данных. " alt="" coords="147,5,299,32"/>
+<area shape="rect" id="node3" href="$classInsert.html" title="Класс, реализующий команду вставки строки в одну из табиц базы данных. " alt="" coords="193,56,252,83"/>
+<area shape="rect" id="node4" href="$classIntersection.html" title="Класс, реализующий команду выборки данных из двух таблиц, с одинаковыми полями ID. " alt="" coords="173,107,272,133"/>
+<area shape="rect" id="node5" href="$classSymmetric__difference.html" title="Класс, реализующий команду выборки данных из двух таблиц, с не пересекающимися ID. " alt="" coords="140,157,305,184"/>
+<area shape="rect" id="node6" href="$classTrancate.html" title="Класс, реализующий команду удаления данных одной из табиц. " alt="" coords="184,208,261,235"/>
+</map>
