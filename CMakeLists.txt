@@ -133,7 +133,7 @@ endif()
 
 # ----------------------------------------------------------------------
 
-install(TARGETS start_server join_server RUNTIME DESTINATION bin)
+install(TARGETS join_server start_server RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
@@ -145,10 +145,10 @@ set(CPACK_PACKAGE_CONTACT sise07@gmail.com)
 
 include(CPack)
 
-# enable_testing()
+enable_testing()
 
-# add_test(version_test_case join_server)
-# add_test(db_handler_test_case join_server)
+add_test(version_test_case join_server)
+add_test(db_handler_test_case join_server)
 
 
 
