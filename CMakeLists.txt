@@ -89,7 +89,7 @@ ${Boost_LIBRARIES}
  Threads::Threads
 )
 
-target_link_libraries(gtest
+target_link_libraries(gtest PRIVATE
     ${GTEST_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
     versionlib
@@ -147,8 +147,8 @@ include(CPack)
 
 enable_testing()
 
-add_test(version_test_case join_server)
-add_test(db_handler_test_case join_server)
+add_test(version_test_case ${CMAKE_PROJECT_NAME})
+add_test(db_handler_test_case ${CMAKE_PROJECT_NAME})
 
 
 
