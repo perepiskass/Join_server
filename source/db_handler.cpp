@@ -1,16 +1,18 @@
 #include "db_handler.h"
+#include "command_handler.h"
 #include <regex>
+#include <memory>
 #include <cstring>
 
 namespace fs = boost::filesystem;
 
-HandlerDB::HandlerDB(std::string name): db_name(name)
+HandlerDB::HandlerDB(const std::string& name): db_name(name)
 {
     if(fs::exists(fs::path(name))) std::cout << "DB exist" << std::endl;
     else 
     {
         std::ofstream temp(name,std::ios::ios_base::ate);
-        std::cout << "DB created : " << name <<  std::endl;
+        std::cout << "DB created : " << name << std::endl;
         temp.close();
     }
     db_stream.open(name,std::ios::ios_base::in | std::ios::ios_base::out | std::ios::ios_base::binary);
@@ -21,15 +23,15 @@ HandlerDB::~HandlerDB()
     db_stream.close();
 }
 
-std::string HandlerDB::setCommand(std::string command)
+std::string HandlerDB::setCommand(const std::string& command)
 {
     checkCommand(command);
     return response;
 }
 
-void HandlerDB::checkCommand(std::string str)
+void HandlerDB::checkCommand(const std::string& str)
 {
-    if (std::regex_match(str,std::regex ("INSERT+ +[A-B]+ +[0-9]{1,3}+ +[a-z|A-Z]{1,10}")))
+    if (std::regex_match(str,std::regex ("INSERT+ +[A-B]+ +[0-9]{1,9}+ +[a-z|A-Z]{1,15}")))
     {
         const char delim = ' ';
         std::string::size_type start = str.find_first_not_of("INSERT ");
@@ -40,11 +42,11 @@ void HandlerDB::checkCommand(std::string str)
         start = end;
         start = str.find_first_not_of(delim,start);
         end = str.find_first_of(delim,start);
-        size_t id =atoi(str.substr(start,end-start).c_str());
+        u_int32_t id =atoi(str.substr(start,end-start).c_str());
         start = end;
         start = str.find_first_not_of(delim,start);
         end = str.find_first_of(delim,start);
-        char name [11];
+        char name [16];
         strcpy(name,str.substr(start,end-start).c_str());
         
         std::unique_ptr<Handler_c> hanlde_c {new Insert(db_stream,table,id,name)};

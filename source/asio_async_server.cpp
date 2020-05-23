@@ -1,12 +1,13 @@
 #include "asio_async_server.h"
+#include <iostream>
 
-size_t session::count = 0;
+size_t session::count_connections = 0;
 
 
 //-----session-----------------------------------------------------------
 session::session(tcp::socket socket,std::shared_ptr<HandlerDB> handler_): socket_(std::move(socket)), handler_db(handler_)
   {
-    session::count++;
+    session::count_connections++;
   }
 
 void session::start()
@@ -28,10 +29,10 @@ void session::do_read()
         }
         else 
         {
-          --count;
-          if(!count)
+          --count_connections;
+          if(!count_connections)
           {
-            std::cout << "all socket close" << std::endl;
+            std::cout << "all connections closed" << std::endl;
           } 
         }
       });

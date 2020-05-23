@@ -17,7 +17,7 @@
         return result;
     }
 
-    std::string Handler_c::makeResponse(std::map<size_t,std::pair<std::string,std::string>>& result)const
+    std::string Handler_c::makeResponse(std::map<u_int32_t,std::pair<std::string,std::string>>& result)const
     {
         std::string response;
         for(auto& res : result)
@@ -25,10 +25,10 @@
             response+=std::to_string(res.first) +"," + res.second.first+"," + res.second.second + '\n';
         }
         response+="OK";
-        return response;
+        return std::move(response);
     }
 
-    Insert::Insert(std::fstream& db_s,char name_table,size_t ID,char* name):Handler_c(db_s)
+    Insert::Insert(std::fstream& db_s,const char name_table,u_int32_t ID,const char* name):Handler_c(db_s)
     {
         insert_tab.table_name = name_table;
         insert_tab.id = ID;
@@ -57,16 +57,13 @@
             else
             {
                 std::cout << "Error open file\n";
-                // exit(1);
             }
-            // db_stream.clear();
-            // return "OK";
-            exit(1);
+            return "ERR open db file\n";
         }
         else return "ERR duplicate " + std::to_string(ID);
     }
 
-    Trancate::Trancate(std::fstream& db_s,char name_table): Handler_c(db_s), table_name(name_table)
+    Trancate::Trancate(std::fstream& db_s,const char name_table): Handler_c(db_s), table_name(name_table)
     {}
     std::string Trancate::handle_command()const
     {
@@ -98,7 +95,7 @@
     std::string Intersection::handle_command()const
     {
         auto all_data = readAll();
-        std::map<size_t,std::pair<std::string,std::string>> result;
+        std::map<u_int32_t,std::pair<std::string,std::string>> result;
         std::for_each(all_data.begin(), all_data.end(), [&all_data,&result](const Table& tab){ 
         if(tab.table_name == 'A')
         {
@@ -121,7 +118,7 @@
     std::string Symmetric_difference::handle_command()const
     {
         auto all_data = readAll();
-        std::map<size_t,std::pair<std::string,std::string>> result;
+        std::map<u_int32_t,std::pair<std::string,std::string>> result;
         std::set<char> tab_name;
         std::for_each(std::begin(all_data),std::end(all_data),[&tab_name](const Table& tab){
             if(tab.table_name == 'A') tab_name.insert('A');
@@ -147,9 +144,8 @@
         return makeResponse(result);
     }
 
-    Defragmintation_db::Defragmintation_db(std::fstream& db_stream,std::string db_name): Handler_c(db_stream),db_name(db_name)
-    {
-    }
+    Defragmintation_db::Defragmintation_db(std::fstream& db_stream,const std::string& db_name): Handler_c(db_stream),db_name(db_name)
+    {}
     std::string Defragmintation_db::handle_command()const
     {
         std::string copy = "copy";

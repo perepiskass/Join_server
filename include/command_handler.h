@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <vector>
 #include <utility>
@@ -10,13 +9,19 @@
 
 namespace fs = boost::filesystem;
 
+/**
+ * @brief Структура, определяет вид в каком данные храняться в базе данных.
+ */
 struct Table
 {    
     char  table_name;
-    size_t id = 0;
-    char name[11]{0};
+    u_int32_t id = 0;
+    char name[16]{0};
 };
 
+/**
+ * @brief Интерфейс для различных классов - команд в базу данных
+ */
 class Handler_c
 {
     public:
@@ -24,15 +29,18 @@ class Handler_c
         virtual std::string handle_command()const = 0;
         virtual ~Handler_c()=default;
         std::vector<Table> readAll()const;
-        std::string makeResponse(std::map<size_t,std::pair<std::string,std::string>>& result)const;
+        std::string makeResponse(std::map<u_int32_t,std::pair<std::string,std::string>>& result)const;
         
         std::fstream& db_stream;
 };
 
+/**
+ * @brief Класс, реализующий команду вставки строки в одну из табиц базы данных.
+ */
 class Insert: public Handler_c
 {   
     public:
-        Insert(std::fstream& db_stream,char name_table,size_t ID,char* name);
+        Insert(std::fstream& db_stream,const char name_table,u_int32_t ID,const char* name);
         std::string handle_command()const override;
         ~Insert()=default;
 
@@ -40,10 +48,13 @@ class Insert: public Handler_c
         Table insert_tab;
 };
 
+/**
+ * @brief Класс, реализующий команду удаления данных одной из табиц.
+ */
 class Trancate: public Handler_c
 {
     public:
-        Trancate(std::fstream& db_stream,char name_table);
+        Trancate(std::fstream& db_stream,const char name_table);
         std::string handle_command()const override;
         ~Trancate()=default;
 
@@ -51,6 +62,9 @@ class Trancate: public Handler_c
         const char table_name;
 };
 
+/**
+ * @brief Класс, реализующий команду выборки данных из двух таблиц, с одинаковыми полями ID.
+ */
 class Intersection: public Handler_c
 {
     public:
@@ -59,6 +73,9 @@ class Intersection: public Handler_c
         ~Intersection()=default;
 };
 
+/**
+ * @brief Класс, реализующий команду выборки данных из двух таблиц, с не пересекающимися ID.
+ */
 class Symmetric_difference: public Handler_c
 {
     public:
@@ -67,13 +84,16 @@ class Symmetric_difference: public Handler_c
         ~Symmetric_difference()=default;
 };
 
+/**
+ * @brief Класс, реализующий команду дефрагминтации файла базы данных.
+ */
 class Defragmintation_db: public Handler_c
 {
     public:
-        Defragmintation_db(std::fstream& db_stream, std::string db_name);
+        Defragmintation_db(std::fstream& db_stream,const std::string& db_name);
         std::string handle_command()const override;
         ~Defragmintation_db()=default;
     private:
-        std::string db_name;
+        const std::string db_name;
 };
 

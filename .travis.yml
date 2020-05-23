@@ -1,0 +1,32 @@
+language: cpp
+dist: xenial
+before_script:
+- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+- sudo apt-get install libboost-all-dev -y
+- sudo apt-get update -qq
+- sudo apt-get install cmake libgtest-dev
+- sudo apt-get install doxygen
+- sudo apt-get install graphviz
+- cd /usr/src/gtest
+- sudo cmake CMakeLists.txt
+- sudo make
+- sudo cp *.a /usr/lib
+- cd $TRAVIS_BUILD_DIR
+script:
+- cmake .
+- cmake --build .
+- cmake --build . --target test
+- cmake --build . --target package
+- doxygen Doxyfile
+deploy:
+- provider: script
+  skip_cleanup: true
+  script:
+    - curl -T join_server-1.1.$TRAVIS_BUILD_NUMBER-Linux.deb -uperepiskass:$BINTRAY_API_KEY "https://api.bintray.com/content/perepiskass/My_DB/join_server/$TRAVIS_BUILD_NUMBER/join_server-1.1.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+- provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local-dir: html
+  on:
+  branch: master

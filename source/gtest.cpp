@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "version_lib.h"
-#include <db_handler.h>
+#include "db_handler.h"
+#include "command_handler.h"
 
 
 
@@ -141,6 +142,50 @@ TEST(db_handler_test_case, symmetric_difference_db_test)
     test.close();
     fs::remove(fs::path("test"));
 }
+
+TEST(db_handler_test_case, defragmintation_db_test)
+{
+    std::ofstream t("test",std::ios::ios_base::ate);
+    t.close();
+    std::fstream test ("test",std::ios::in | std::ios::out | std::ios::binary);
+    char name[10];
+    strcpy(name,"name");
+    size_t string_count = 100;
+    if(test.is_open())
+    {
+        for(size_t i = 0;i < string_count;++i)
+        {
+            std::unique_ptr<Handler_c> insertA{new Insert(test,'A',i,name)};
+            insertA->handle_command();
+        }
+    }
+    else std::cout << "ERROR OPEN FILE\n";
+    test.close();
+    EXPECT_EQ(fs::file_size(fs::path("test")),sizeof(Table)*string_count);
+
+    test.open("test",std::ios::in | std::ios::out | std::ios::binary);
+    if(test.is_open())
+    {
+        std::unique_ptr<Handler_c> trancate{new Trancate(test,'A')};
+        trancate->handle_command();
+    }
+    else std::cout << "ERROR OPEN FILE\n";
+    test.close();
+
+    EXPECT_EQ(fs::file_size(fs::path("test")),sizeof(Table)*string_count);
+
+    test.open("test",std::ios::in | std::ios::out | std::ios::binary);
+    if(test.is_open())
+    {
+        std::unique_ptr<Handler_c> defragmintation{new Defragmintation_db(test,"test")};
+        defragmintation->handle_command();
+    }
+    else std::cout << "ERROR OPEN FILE\n";
+    test.close();
+    EXPECT_EQ(fs::file_size(fs::path("test")),0);
+    fs::remove(fs::path("test"));
+}
+
 
 
 int main(int argc, char **argv) {

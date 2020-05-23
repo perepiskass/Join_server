@@ -89,17 +89,12 @@ ${Boost_LIBRARIES}
  Threads::Threads
 )
 
-
 target_link_libraries(gtest
     ${GTEST_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
     versionlib
     dbase
     )
-#target_link_libraries(gtest
-#${CMAKE_THREAD_LIBS_INIT}
-#versionlib
-#)
 
 # СВОЙСТВА ДЛЯ КОМПИЛЯТОРОВ (ЛЮБЫЕ ПРЕДУПРЕЖДЕНИЯ ТРАКТОВАТЬ КАК ОШИБКИ)
 if (MSVC)
@@ -153,6 +148,7 @@ include(CPack)
 enable_testing()
 
 add_test(version_test_case join_server)
+add_test(db_handler_test_case join_server)
 
 
 

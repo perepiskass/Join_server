@@ -1,17 +1,20 @@
 #pragma once
-#include "command_handler.h"
-#include <memory>
+#include <fstream>
 
+
+/**
+ * @brief Класс, для хранения состояния подключения к файлу БД и создания запросов в нее.
+ */
 class HandlerDB
 {
     public:
-        HandlerDB(std::string name);
-        std::string setCommand(std::string command);
+        HandlerDB(const std::string& name);
+        std::string setCommand(const std::string& command);
         ~HandlerDB();
 
     private:
-        void checkCommand(std::string);
-        std::string db_name;
+        void checkCommand(const std::string& command);
+        const std::string db_name;
         std::fstream db_stream;
         std::string response;
 };

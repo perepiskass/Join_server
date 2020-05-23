@@ -20,7 +20,7 @@ class session: public std::enable_shared_from_this<session>
     char data_[1024];
 
     std::shared_ptr<HandlerDB> handler_db;
-    static size_t count;
+    static size_t count_connections;
 };
 
 class server
